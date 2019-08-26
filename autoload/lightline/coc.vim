@@ -1,9 +1,12 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Configs
 
+let s:nerdfont = get(g:, 'nerdfont', 0)
+
+
 let s:indicator_warnings = get(g:, 'lightline#coc#indicator_warnings', '•')
 let s:indicator_errors = get(g:, 'lightline#coc#indicator_errors', '×')
-let s:indicator_ok = get(g:, 'lightline#coc#indicator_ok', '✓')
+let s:indicator_ok = get(g:, 'lightline#coc#indicator_ok', (s:nerdfont ? "\uf058" : '✓'))
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lightline components
