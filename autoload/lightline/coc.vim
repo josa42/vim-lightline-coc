@@ -23,6 +23,10 @@ function! lightline#coc#ok() abort
   return l:counts == 0 ? s:indicator_ok : ''
 endfunction
 
+function lightline#coc#status()
+  return exists('g:coc_status') ? g:coc_status : ''
+endfunction
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Helper functions
 

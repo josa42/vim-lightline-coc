@@ -20,6 +20,7 @@ let g:lightline.component_expand = {
   \   'linter_warnings': 'lightline#coc#warnings',
   \   'linter_errors': 'lightline#coc#errors',
   \   'linter_ok': 'lightline#coc#ok',
+  \   'status': 'lightline#coc#status',
   \ }
 ```
 
