@@ -75,9 +75,7 @@ function! s:countSum() abort
 endfunction
 
 function! s:isHidden()
-  let filetypes = ['nerdtree', 'startify', 'list']
-  let filenames = ['[Plugins]', '__vista__', 'startify', 'NERDTree']
-  return index(filetypes, &filetype) != -1 || index(filenames, expand('%:t')) != -1
+  return exists('*lightline#sensible#isHidden') && lightline#sensible#isHidden()
 endfunction
 
 function! s:setLightline(scope, name, value) abort
