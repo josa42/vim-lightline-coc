@@ -2,19 +2,40 @@
 
 This plugin provides [coc](https://github.com/neoclide/coc.nvim) diagnostics indicator for the [lightline](https://github.com/itchyny/lightline.vim) vim plugin.
 
+![Example](.github/example-v2.jpg)
+
 ## Installation
 
-Install using a plugin manager of your choice, for example:
+Install using a plugin manager of your choice, for example [`vim-plug`](https://github.com/junegunn/vim-plug):
 
 ```viml
 Plug 'josa42/vim-lightline-coc'
 ```
 
+## Components
+
+- `coc_errors` Number of diagnosics errors
+- `coc_warnings` Number of diagnosics warnings
+- `coc_ok` Checkmark if there are no errors or warnings
+- `coc_status` Show status messeges if there are any.
+
 ## Integration
 
-1. Register the components:
+```viml
+let g:lightline = {
+  \   'active': {
+  \     left': [[ 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status'  ]]
+  \   }
+  \ }
+
+" register compoments:
+call lightline#coc#register()
+```
+
+**Or register manually**
 
 ```viml
+" Register the components:
 let g:lightline = {}
 let g:lightline.component_expand = {
   \   'linter_warnings': 'lightline#coc#warnings',
@@ -22,22 +43,18 @@ let g:lightline.component_expand = {
   \   'linter_ok': 'lightline#coc#ok',
   \   'status': 'lightline#coc#status',
   \ }
-```
 
-2. Set color to the components:
-
-```viml
+" Set color to the components:
 let g:lightline.component_type = {
   \   'linter_warnings': 'warning',
   \   'linter_errors': 'error',
   \   'linter_ok': 'left',
   \ }
-```
 
-3. Add the components to the lightline, for example to the right side:
-
-```viml
-let g:lightline.active = { 'right': [[ 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+" Add the components to the lightline:
+let g:lightline.active = {
+  \   left': [[ 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status'  ]]
+  \ }
 ```
 
 ## Configuration

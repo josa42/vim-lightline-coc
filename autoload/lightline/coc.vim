@@ -3,7 +3,6 @@
 
 let s:nerdfont = get(g:, 'nerdfont', 0)
 
-
 let s:indicator_warnings = get(g:, 'lightline#coc#indicator_warnings', '•')
 let s:indicator_errors = get(g:, 'lightline#coc#indicator_errors', '×')
 let s:indicator_ok = get(g:, 'lightline#coc#indicator_ok', (s:nerdfont ? "\uf058" : '✓'))
@@ -12,34 +11,34 @@ let s:indicator_ok = get(g:, 'lightline#coc#indicator_ok', (s:nerdfont ? "\uf058
 " Lightline components
 
 function! lightline#coc#warnings() abort
-  if lightline#coc#isHidden()
+  if s:isHidden()
     return ''
   endif
 
-  let l:counts = lightline#coc#count('warning')
+  let l:counts = s:count('warning')
   return l:counts == 0 ? '' : printf(s:indicator_warnings . '%d', l:counts)
 endfunction
 
 function! lightline#coc#errors() abort
-  if lightline#coc#isHidden()
+  if s:isHidden()
     return ''
   endif
 
-  let l:counts = lightline#coc#count('error')
+  let l:counts = s:count('error')
   return l:counts == 0 ? '' : printf(s:indicator_errors . '%d', l:counts)
 endfunction
 
 function! lightline#coc#ok() abort
-  if lightline#coc#isHidden()
+  if s:isHidden()
     return ''
   endif
 
-  let l:counts = lightline#coc#countSum()
+  let l:counts = s:countSum()
   return l:counts == 0 ? s:indicator_ok : ''
 endfunction
 
 function! lightline#coc#status()
-  if lightline#coc#isHidden()
+  if s:isHidden()
     return ''
   endif
 
@@ -47,21 +46,44 @@ function! lightline#coc#status()
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Register
+
+function! lightline#coc#register() abort
+  call s:setLightline('component_expand', 'coc_status', 'lightline#coc#status')
+  call s:setLightline('component_expand', 'coc_warnings', 'lightline#coc#warnings')
+  call s:setLightline('component_expand', 'coc_errors', 'lightline#coc#errors')
+  call s:setLightline('component_expand', 'coc_ok', 'lightline#coc#ok')
+
+  call s:setLightline('component_type', 'coc_warnings', 'warning')
+  call s:setLightline('component_type', 'coc_errors', 'error')
+  call s:setLightline('component_type', 'coc_ok', 'left')
+
+  call s:setLightline('component_function', 'coc_status', 'lightline#coc#status')
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Helper functions
 
-function! lightline#coc#count(level) abort
+function! s:count(level) abort
   let info = get(b:, 'coc_diagnostic_info', {})
   return get(info, a:level, 0)
 endfunction
 
-function! lightline#coc#countSum() abort
+function! s:countSum() abort
   let info = get(b:, 'coc_diagnostic_info', {})
   return get(info, 'error', 0) + get(info, 'warning', 0)
 endfunction
 
-function! lightline#coc#isHidden()
+function! s:isHidden()
   let filetypes = ['nerdtree', 'startify', 'list']
   let filenames = ['[Plugins]', '__vista__', 'startify', 'NERDTree']
   return index(filetypes, &filetype) != -1 || index(filenames, expand('%:t')) != -1
 endfunction
+
+function! s:setLightline(scope, name, value) abort
+  let g:lightline = get(g:, 'lightline', {})
+  let g:lightline[a:scope] = get(g:lightline, a:scope, {})
+  let g:lightline[a:scope][a:name] =  get(g:lightline[a:scope], a:name, a:value)
+endfunction
+
 
