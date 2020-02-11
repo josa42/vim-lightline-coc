@@ -38,10 +38,6 @@ function! lightline#coc#ok() abort
 endfunction
 
 function! lightline#coc#status()
-  if s:isHidden()
-    return ''
-  endif
-
   return get(g:, 'coc_status', '')
 endfunction
 
