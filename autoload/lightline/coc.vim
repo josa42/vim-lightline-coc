@@ -91,7 +91,7 @@ endfunction
 
 function! s:countSum() abort
   let info = get(b:, 'coc_diagnostic_info', {})
-  return get(info, 'error', 0) + get(info, 'warning', 0)
+  return get(info, 'error', 0) + get(info, 'warning', 0) + get(info, 'hint', 0) + get(info, 'information', 0)
 endfunction
 
 function! s:isHidden()
