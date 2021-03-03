@@ -14,12 +14,12 @@ Plug 'josa42/vim-lightline-coc'
 
 ## Components
 
-- `coc_errors` Number of diagnosics errors
-- `coc_warnings` Number of diagnosics warnings
-- `coc_info` Number of diagnosics information messages
-- `coc_hints` Number of diagnosics hints
+- `coc_errors` Number of diagnostics errors
+- `coc_warnings` Number of diagnostics warnings
+- `coc_info` Number of diagnostics information messages
+- `coc_hints` Number of diagnostics hints
 - `coc_ok` Checkmark if there are no errors or warnings
-- `coc_status` Show status messeges if there are any.
+- `coc_status` Show status messages if there are any.
 
 ## Integration
 
