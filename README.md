@@ -26,7 +26,7 @@ Plug 'josa42/vim-lightline-coc'
 ```viml
 let g:lightline = {
   \   'active': {
-  \     left': [[  'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status'  ]]
+  \     'left': [[  'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status'  ]]
   \   }
   \ }
 
@@ -59,7 +59,7 @@ let g:lightline.component_type = {
 
 " Add the components to the lightline:
 let g:lightline.active = {
-  \   left': [[ 'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status'  ]]
+  \   'left': [[ 'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status'  ]]
   \ }
 ```
 
