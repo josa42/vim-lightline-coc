@@ -26,11 +26,14 @@ Plug 'josa42/vim-lightline-coc'
 ```viml
 let g:lightline = {
   \   'active': {
-  \     left': [[  'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status'  ]]
+  \     'left': [ [ 'mode', 'paste' ],
+  \               [ 'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ],
+  \               [ 'coc_status' ],
+  \               [ 'readonly', 'filename', 'modified' ]]
   \   }
   \ }
 
-" register compoments:
+" Register compoments:
 call lightline#coc#register()
 ```
 
@@ -59,8 +62,11 @@ let g:lightline.component_type = {
 
 " Add the components to the lightline:
 let g:lightline.active = {
-  \   left': [[ 'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ], [ 'coc_status'  ]]
-  \ }
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok' ],
+  \             [ 'coc_status' ],
+  \             [ 'readonly', 'filename', 'modified' ]]
+  \   }
 ```
 
 ## Configuration
